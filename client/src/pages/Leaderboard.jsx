@@ -611,8 +611,8 @@ export default function LeaderboardApp() {
                                 >
                                     <option value="total-desc">Total Score (High to Low)</option>
                                     <option value="total-asc">Total Score (Low to High)</option>
-                                    <option value="cp1-desc">Checkpoint 1 Score</option>
-                                    <option value="cp4-desc">Checkpoint 4 Score</option>
+                                    {/* <option value="cp1-desc">Checkpoint 1 Score</option>
+                                    <option value="cp4-desc">Checkpoint 4 Score</option> */}
                                     <option value="name-asc">Team Name (A-Z)</option>
                                 </select>
                             </div>
