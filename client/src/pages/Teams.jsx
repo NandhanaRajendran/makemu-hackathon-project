@@ -482,13 +482,14 @@ const Teams = () => {
           {/* Card 3: Winning Team */}
           <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-pink-50 text-pink-600 flex items-center justify-center shrink-0">
-              <Trophy size={22} />
+              <Users size={22} />
             </div>
+
             <div>
               <p className="text-2xl font-black text-slate-900 tracking-tight">
-                {teams.length}
+                4
               </p>
-              <p className="text-xs font-semibold text-slate-500">Registered Teams</p>
+              <p className="text-xs font-semibold text-slate-500">Checkpoints</p>
             </div>
           </div>
 
