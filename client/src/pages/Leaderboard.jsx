@@ -139,6 +139,32 @@ export default function LeaderboardApp() {
         return sortedByRank.slice(0, 3);
     }, [leaderboard]);
 
+    const openTeamDetails = async (team) => {
+        try {
+            const response = await axios.get(
+                `${API_URL}/api/teams/${team.teamId}`
+            );
+
+            const teamData = response.data.team || response.data;
+
+            setSelectedTeam({
+                ...team,
+                members: Array.isArray(teamData.members)
+                    ? teamData.members.map((member) =>
+                        typeof member === "string"
+                            ? member
+                            : member.name
+                    )
+                    : []
+            });
+        } catch (error) {
+            console.error("Failed to load team members:", error);
+
+            // Still open the modal with whatever data we already have
+            setSelectedTeam(team);
+        }
+    };
+
     return (
         <div className="min-h-screen bg-[#0d091a] text-slate-100 font-sans antialiased selection:bg-purple-500 selection:text-white">
 
@@ -466,7 +492,7 @@ export default function LeaderboardApp() {
                                     {topThree[1]?.total}
                                 </div>
                                 <button
-                                    onClick={() => setSelectedTeam(topThree[1])}
+                                    onClick={() => openTeamDetails(topThree[1])}
                                     className="mt-4 text-xs font-semibold text-purple-600 hover:text-purple-800 flex items-center gap-1"
                                 >
                                     View Details <ChevronRight className="w-3.5 h-3.5" />
@@ -503,7 +529,7 @@ export default function LeaderboardApp() {
                                 </span>
 
                                 <button
-                                    onClick={() => setSelectedTeam(topThree[0])}
+                                    onClick={() => openTeamDetails(topThree[0])}
                                     className="mt-4 px-4 py-1.5 rounded-full bg-amber-500 hover:bg-amber-600 text-white font-semibold text-xs transition shadow-md flex items-center gap-1"
                                 >
                                     Champion Card <ChevronRight className="w-3.5 h-3.5" />
@@ -529,7 +555,7 @@ export default function LeaderboardApp() {
                                     {topThree[2]?.total}
                                 </div>
                                 <button
-                                    onClick={() => setSelectedTeam(topThree[2])}
+                                    onClick={() => openTeamDetails(topThree[2])}
                                     className="mt-4 text-xs font-semibold text-purple-600 hover:text-purple-800 flex items-center gap-1"
                                 >
                                     View Details <ChevronRight className="w-3.5 h-3.5" />
