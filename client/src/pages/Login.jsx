@@ -14,6 +14,8 @@ import {
     Check,
     Sparkles
 } from "lucide-react";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 
 const MentorLogin = () => {
     const navigate = useNavigate();
@@ -40,8 +42,7 @@ const MentorLogin = () => {
         setStatusMessage(null);
 
         try {
-            const response = await axios.post(
-                "http://localhost:5000/api/auth/login",
+            const response = await axios.post(`${API_URL}/api/auth/login`,
                 {
                     username: username.trim(),
                     password
@@ -263,8 +264,8 @@ const MentorLogin = () => {
                         {statusMessage && (
                             <div
                                 className={`p-3.5 rounded-xl text-xs font-semibold flex items-center gap-2.5 ${statusMessage.type === "error"
-                                        ? "bg-red-50 border border-red-200 text-red-600"
-                                        : "bg-emerald-50 border border-emerald-200 text-emerald-700"
+                                    ? "bg-red-50 border border-red-200 text-red-600"
+                                    : "bg-emerald-50 border border-emerald-200 text-emerald-700"
                                     }`}
                             >
                                 <Sparkles size={16} />
@@ -336,8 +337,8 @@ const MentorLogin = () => {
                                 type="button"
                                 onClick={() => setRememberMe(!rememberMe)}
                                 className={`w-4 h-4 rounded border flex items-center justify-center transition-all ${rememberMe
-                                        ? "bg-indigo-600 border-indigo-600 text-white"
-                                        : "border-slate-300 bg-white hover:border-slate-400"
+                                    ? "bg-indigo-600 border-indigo-600 text-white"
+                                    : "border-slate-300 bg-white hover:border-slate-400"
                                     }`}
                             >
                                 {rememberMe && <Check size={12} strokeWidth={3} />}

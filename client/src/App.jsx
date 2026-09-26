@@ -28,7 +28,7 @@ import Leaderboard from "./pages/Leaderboard";
 
 // Protect mentor-only pages
 const ProtectedRoute = ({ children }) => {
-  const token = localStorage.getItem("mentorToken");
+  const token = sessionStorage.getItem("mentorToken");
 
   if (!token) {
     return <Navigate to="/login" replace />;
