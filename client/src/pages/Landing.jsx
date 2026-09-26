@@ -600,7 +600,7 @@ const LandingContent = () => {
           </div>
 
           {/* Quick Nav Links */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-slate-300">
+          {/* <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-slate-300">
             <a href="#home" className="hover:text-white transition-colors">Home</a>
             <span className="text-slate-700">|</span>
             <a href="#checkpoint" className="hover:text-white transition-colors">Checkpoint</a>
@@ -608,7 +608,7 @@ const LandingContent = () => {
             <a href="#teams" className="hover:text-white transition-colors">Teams</a>
             <span className="text-slate-700">|</span>
             <a href="#leaderboard" className="hover:text-white transition-colors">Leaderboard</a>
-          </div>
+          </div> */}
 
           {/* Socials & Note */}
           <div className="flex flex-col items-center md:items-end gap-3">

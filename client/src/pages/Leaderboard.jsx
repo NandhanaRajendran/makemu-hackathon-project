@@ -422,7 +422,7 @@ export default function LeaderboardApp() {
                                 </span>
                                 <div className="flex items-center gap-1.5 font-bold text-sm tracking-wide">
                                     <span className="text-purple-400 text-base font-mono">μ</span><span className="text-white">Learn IDK</span>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -750,62 +750,62 @@ export default function LeaderboardApp() {
             </main>
 
             <footer className="bg-[#080B1A] border-t border-slate-800/80 py-12 px-6 lg:px-16 text-slate-400 text-xs">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Brand Details */}
-          <div className="space-y-2 text-center md:text-left">
-            <div className="flex items-center justify-center md:justify-start gap-1">
-              <span className="text-xl font-black text-white">Make</span>
-              <span className="mu-symbol-gradient text-2xl font-bold">μ</span>
-            </div>
-            <p className="text-[10px] text-slate-500 font-medium uppercase tracking-wider">
-              Hackathon 2026
-            </p>
-            <p className="text-xs text-slate-300 font-medium">
-              Ideas. Innovation. Impact.
-            </p>
-            <p className="text-xs text-slate-500">
-              A hackathon by μLearn IDK
-            </p>
-          </div>
+                <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+                    {/* Brand Details */}
+                    <div className="space-y-2 text-center md:text-left">
+                        <div className="flex items-center justify-center md:justify-start gap-1">
+                            <span className="text-xl font-black text-white">Make</span>
+                            <span className="mu-symbol-gradient text-2xl font-bold">μ</span>
+                        </div>
+                        <p className="text-[10px] text-slate-500 font-medium uppercase tracking-wider">
+                            Hackathon 2026
+                        </p>
+                        <p className="text-xs text-slate-300 font-medium">
+                            Ideas. Innovation. Impact.
+                        </p>
+                        <p className="text-xs text-slate-500">
+                            A hackathon by μLearn IDK
+                        </p>
+                    </div>
 
-          {/* Quick Nav Links */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-slate-300">
-            <a href="#home" className="hover:text-white transition-colors">Home</a>
-            <span className="text-slate-700">|</span>
-            <a href="#checkpoint" className="hover:text-white transition-colors">Checkpoint</a>
-            <span className="text-slate-700">|</span>
-            <a href="#teams" className="hover:text-white transition-colors">Teams</a>
-            <span className="text-slate-700">|</span>
-            <a href="#leaderboard" className="hover:text-white transition-colors">Leaderboard</a>
-          </div>
+                    {/* Quick Nav Links */}
+                    {/* <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-slate-300">
+                        <a href="#home" className="hover:text-white transition-colors">Home</a>
+                        <span className="text-slate-700">|</span>
+                        <a href="#checkpoint" className="hover:text-white transition-colors">Checkpoint</a>
+                        <span className="text-slate-700">|</span>
+                        <a href="#teams" className="hover:text-white transition-colors">Teams</a>
+                        <span className="text-slate-700">|</span>
+                        <a href="#leaderboard" className="hover:text-white transition-colors">Leaderboard</a>
+                    </div> */}
 
-          {/* Socials & Note */}
-          <div className="flex flex-col items-center md:items-end gap-3">
-            <div className="flex items-center gap-4 text-slate-400">
-              
+                    {/* Socials & Note */}
+                    <div className="flex flex-col items-center md:items-end gap-3">
+                        <div className="flex items-center gap-4 text-slate-400">
 
-              <a
-                href="https://www.instagram.com/mulearn.geci?stkn=MXdld3Byd3dnbGFhMg=="
-                className="hover:text-white transition-colors p-1.5 bg-white/5 rounded-full border border-white/10"
-              >
-                IG
-              </a>
 
-              <a
-                href="https://www.linkedin.com/company/mulearn-geci/"
-                className="hover:text-white transition-colors p-1.5 bg-white/5 rounded-full border border-white/10"
-              >
-                in
-              </a>
+                            <a
+                                href="https://www.instagram.com/mulearn.geci?stkn=MXdld3Byd3dnbGFhMg=="
+                                className="hover:text-white transition-colors p-1.5 bg-white/5 rounded-full border border-white/10"
+                            >
+                                IG
+                            </a>
 
-              
-            </div>
-            <p className="text-[11px] text-slate-500">
-              Build today for a brighter tomorrow.
-            </p>
-          </div>
-        </div>
-      </footer>
+                            <a
+                                href="https://www.linkedin.com/company/mulearn-geci/"
+                                className="hover:text-white transition-colors p-1.5 bg-white/5 rounded-full border border-white/10"
+                            >
+                                in
+                            </a>
+
+
+                        </div>
+                        <p className="text-[11px] text-slate-500">
+                            Build today for a brighter tomorrow.
+                        </p>
+                    </div>
+                </div>
+            </footer>
 
             {/* TEAM DETAIL MODAL */}
             { }

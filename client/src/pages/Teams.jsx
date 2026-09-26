@@ -6,6 +6,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   X,
+  Menu,
   Users,
   Trophy,
   UserCheck,
@@ -23,7 +24,8 @@ import {
   Star,
   ChevronLeft,
   ChevronRight,
-  User
+  User,
+  LogOut
 } from "lucide-react";
 
 const GithubIcon = ({ size = 16, className = "" }) => (
@@ -110,6 +112,7 @@ const Teams = () => {
   const [error, setError] = useState("");
   const [activePage, setActivePage] = useState(1);
   const [mentorUsername, setMentorUsername] = useState("Mentor");
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const TEAMS_PER_PAGE = 6;
 
@@ -132,7 +135,7 @@ const Teams = () => {
       console.error("Failed to load teams:", err);
       setError(
         err.response?.data?.message ||
-          "Unable to load teams. Please try again."
+        "Unable to load teams. Please try again."
       );
       setTeams([]);
     } finally {
@@ -155,6 +158,13 @@ const Teams = () => {
       setMentorUsername("Mentor");
     }
   }, []);
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("mentorToken");
+    sessionStorage.removeItem("mentor");
+
+    window.location.href = "/login";
+  };
 
   const filteredTeams = useMemo(() => {
     if (!search.trim()) return teams;
@@ -246,46 +256,150 @@ const Teams = () => {
       `}</style>
 
       {/* NAVBAR */}
+      {/* NAVBAR */}
       <header className="bg-[#080B1A] text-white sticky top-0 z-40 border-b border-white/10 px-4 sm:px-8 lg:px-16 py-3.5 shadow-md">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div>
-              <div className="text-2xl font-black tracking-tight flex items-center">
-                <span>Make</span>
-                <span className="mu-symbol-gradient text-3xl font-bold ml-[1px]">μ</span>
+
+        <div className="max-w-7xl mx-auto">
+
+          <div className="flex items-center justify-between">
+
+            {/* Logo */}
+            <Link
+              to="/"
+              className="flex items-center"
+            >
+              <div>
+                <div className="text-2xl font-black tracking-tight flex items-center">
+                  <span>Make</span>
+                  <span className="mu-symbol-gradient text-3xl font-bold ml-[1px]">
+                    μ
+                  </span>
+                </div>
+
+                <p className="text-[10px] text-slate-400 font-medium tracking-wider uppercase -mt-1">
+                  Hackathon 2026
+                </p>
               </div>
-              <p className="text-[10px] text-slate-400 font-medium tracking-wider uppercase -mt-1">
-                Hackathon 2026
-              </p>
+            </Link>
+
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
+
+              <Link
+                to="/"
+                className="text-slate-300 hover:text-white transition-colors"
+              >
+                Home
+              </Link>
+
+              <Link
+                to="/checkpoint"
+                className="text-slate-300 hover:text-white transition-colors"
+              >
+                Checkpoint
+              </Link>
+
+              <Link
+                to="/teams"
+                className="relative text-white font-bold py-1"
+              >
+                Teams
+
+                <span className="absolute bottom-0 left-0 w-full h-[2.5px] bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-full" />
+              </Link>
+
+              <Link
+                to="/leaderboard"
+                className="text-slate-300 hover:text-white transition-colors"
+              >
+                Leaderboard
+              </Link>
+
+            </nav>
+
+
+            {/* Desktop Mentor Badge */}
+            <div className="hidden lg:flex items-center gap-3">
+
+              <button
+                className="bg-white/10 hover:bg-white/15 text-white text-xs font-semibold px-4 py-2 rounded-full border border-white/15 flex items-center gap-2 transition-all cursor-pointer"
+              >
+                <User size={14} className="text-purple-300" />
+
+                <span>
+                  {mentorUsername}
+                </span>
+              </button>
+
             </div>
-          </div>
 
-          {/* Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
-            <Link to="/" className="text-slate-300 hover:text-white transition-colors">
-              Home
-            </Link>
-            <Link to="/checkpoint" className="text-slate-300 hover:text-white transition-colors">
-              Checkpoint
-            </Link>
-            <a href="#" className="relative text-white font-bold py-1">
-              Teams
-              <span className="absolute bottom-0 left-0 w-full h-[2.5px] bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-full" />
-            </a>
-            <Link to="/leaderboard" className="text-slate-300 hover:text-white transition-colors">
-              Leaderboard
-            </Link>
-          </nav>
 
-          {/* User / Mentor Badge */}
-          <div className="flex items-center gap-3">
-            <button className="bg-white/10 hover:bg-white/15 text-white text-xs font-semibold px-4 py-2 rounded-full border border-white/15 flex items-center gap-2 transition-all cursor-pointer">
-              <User size={14} className="text-purple-300" />
-              <span>{mentorUsername}</span>
+            {/* Mobile / Tablet Menu Button */}
+            <button
+              onClick={() => setShowMobileMenu(!showMobileMenu)}
+              className="lg:hidden w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-white hover:bg-white/15 transition-colors"
+              aria-label="Toggle navigation menu"
+            >
+              {showMobileMenu ? (
+                <X size={20} />
+              ) : (
+                <Menu size={20} />
+              )}
             </button>
+
           </div>
+
+
+          {/* Mobile / Tablet Menu */}
+          {showMobileMenu && (
+            <div className="lg:hidden mt-4 pt-4 pb-2 border-t border-white/10 space-y-1">
+
+              <Link
+                to="/"
+                onClick={() => setShowMobileMenu(false)}
+                className="block px-4 py-3 rounded-xl text-sm text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+              >
+                Home
+              </Link>
+
+              <Link
+                to="/checkpoint"
+                onClick={() => setShowMobileMenu(false)}
+                className="block px-4 py-3 rounded-xl text-sm text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+              >
+                Checkpoint
+              </Link>
+
+              <Link
+                to="/teams"
+                onClick={() => setShowMobileMenu(false)}
+                className="block px-4 py-3 rounded-xl text-sm font-bold text-white bg-white/10"
+              >
+                Teams
+              </Link>
+
+              <Link
+                to="/leaderboard"
+                onClick={() => setShowMobileMenu(false)}
+                className="block px-4 py-3 rounded-xl text-sm text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+              >
+                Leaderboard
+              </Link>
+
+              <button
+                onClick={handleLogout}
+                className="w-full text-left px-4 py-3 rounded-xl text-sm text-red-400 hover:bg-red-500/10 flex items-center gap-2 transition-colors"
+              >
+                <LogOut size={16} />
+                Sign Out
+              </button>
+
+            </div>
+          )}
+
         </div>
+
       </header>
 
       {/* HERO BANNER SECTION */}
@@ -295,7 +409,7 @@ const Teams = () => {
         <div className="absolute top-1/2 left-10 w-80 h-80 bg-blue-600/15 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-          
+
           {/* Main Title & Subtitle */}
           <div className="lg:col-span-7 space-y-3">
             <p className="text-xs font-bold tracking-[0.25em] text-slate-400 uppercase">
@@ -339,10 +453,10 @@ const Teams = () => {
 
       {/* MAIN CONTAINER */}
       <main className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 py-8 space-y-8">
-        
+
         {/* STATS OVERVIEW CARDS */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-          
+
           {/* Card 1: Teams */}
           <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
@@ -459,7 +573,7 @@ const Teams = () => {
 
                     {/* Card Footer: Avatars + Members count + View Button */}
                     <div className="flex items-center justify-between pt-2 border-t border-slate-100">
-                      
+
                       {/* Left: Avatar Stack + Count */}
                       <div className="flex items-center gap-2.5">
                         <div className="flex -space-x-2 overflow-hidden">
@@ -469,10 +583,9 @@ const Teams = () => {
                             return (
                               <div
                                 key={member._id || member.id || idx}
-                                className={`w-7 h-7 rounded-full ${
-                                  member.avatarBg ||
+                                className={`w-7 h-7 rounded-full ${member.avatarBg ||
                                   AVATAR_BACKGROUNDS[idx % AVATAR_BACKGROUNDS.length]
-                                } text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-xs`}
+                                  } text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-xs`}
                                 title={memberName}
                               >
                                 {memberName.charAt(0).toUpperCase()}
@@ -517,11 +630,10 @@ const Teams = () => {
                 <button
                   key={page}
                   onClick={() => setActivePage(page)}
-                  className={`w-9 h-9 rounded-xl text-xs font-extrabold flex items-center justify-center transition-all cursor-pointer ${
-                    activePage === page
-                      ? "bg-indigo-600 text-white shadow-md shadow-indigo-500/20"
-                      : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
-                  }`}
+                  className={`w-9 h-9 rounded-xl text-xs font-extrabold flex items-center justify-center transition-all cursor-pointer ${activePage === page
+                    ? "bg-indigo-600 text-white shadow-md shadow-indigo-500/20"
+                    : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
+                    }`}
                 >
                   {page}
                 </button>
@@ -598,10 +710,9 @@ const Teams = () => {
                     >
                       <div className="flex items-center gap-3">
                         <div
-                          className={`w-9 h-9 rounded-full ${
-                            member.avatarBg ||
+                          className={`w-9 h-9 rounded-full ${member.avatarBg ||
                             AVATAR_BACKGROUNDS[index % AVATAR_BACKGROUNDS.length]
-                          } text-white font-extrabold text-xs flex items-center justify-center shadow-xs`}
+                            } text-white font-extrabold text-xs flex items-center justify-center shadow-xs`}
                         >
                           {memberName.charAt(0).toUpperCase()}
                         </div>
@@ -656,7 +767,7 @@ const Teams = () => {
           </div>
 
           {/* Quick Nav Links */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-slate-300">
+          {/* <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-slate-300">
             <a href="#home" className="hover:text-white transition-colors">Home</a>
             <span className="text-slate-700">|</span>
             <a href="#checkpoint" className="hover:text-white transition-colors">Checkpoint</a>
@@ -664,12 +775,12 @@ const Teams = () => {
             <a href="#teams" className="hover:text-white transition-colors">Teams</a>
             <span className="text-slate-700">|</span>
             <a href="#leaderboard" className="hover:text-white transition-colors">Leaderboard</a>
-          </div>
+          </div> */}
 
           {/* Socials & Note */}
           <div className="flex flex-col items-center md:items-end gap-3">
             <div className="flex items-center gap-4 text-slate-400">
-              
+
 
               <a
                 href="https://www.instagram.com/mulearn.geci?stkn=MXdld3Byd3dnbGFhMg=="
@@ -685,7 +796,7 @@ const Teams = () => {
                 in
               </a>
 
-              
+
             </div>
             <p className="text-[11px] text-slate-500">
               Build today for a brighter tomorrow.
