@@ -452,7 +452,7 @@ const LandingContent = () => {
                 </div>
                 <div>
                   <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">Teams</h4>
-                  <p className="text-sm font-semibold text-slate-700 mt-0.5">15 Teams</p>
+                  <p className="text-sm font-semibold text-slate-700 mt-0.5">17 Teams</p>
                 </div>
               </div>
 
