@@ -860,14 +860,14 @@ export default function LeaderboardApp() {
                         </div>
 
                         {/* Project info */}
-                        <div className="bg-purple-950/50 border border-purple-800/30 rounded-2xl p-4 space-y-1">
+                        {/* <div className="bg-purple-950/50 border border-purple-800/30 rounded-2xl p-4 space-y-1">
                             <div className="text-xs text-slate-400 font-medium">
                                 Project Name
                             </div>
                             <div className="text-sm font-semibold text-purple-200">
                                 {selectedTeam.project}
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* Checkpoint breakdown */}
                         <div className="space-y-2">
